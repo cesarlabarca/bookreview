@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>My Library</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Library Dashboard</h1>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3>Books Read</h3>
+          <h2>{{ total_read }}</h2>
+        </div>
+        <div class="stat-card" style="background: #6c757d">
+          <h3>Library Total</h3>
+          <h2>{{ total_library }}</h2>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 30px">
+        <a href="/add" class="btn btn-primary">Log Finished Book</a>
+        <a href="/add-book" class="btn btn-secondary">Add New Book</a>
+      </div>
+
+      <div class="card">
+        <h2>Recently Finished</h2>
+        {% for book in finished %}
+        <div style="border-bottom: 1px solid #eee; padding: 10px 0">
+          <strong>{{ book.title }}</strong> by {{ book.author }}<br />
+          <small style="color: #666">Note: {{ book.note }}</small>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="card">
+        <h2>Want to Read</h2>
+        <ul style="list-style: none; padding: 0">
+          {% for book in want_to_read %}
+          <li style="padding: 5px 0">
+            📖 {{ book.title }} ({{ book.author }})
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Log Activity</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <h2>Log a Finished Book</h2>
+        <form method="POST">
+          <label>Which book did you finish?</label>
+          <select name="book_id" required>
+            <option value="" disabled selected>Select from library...</option>
+            {% for book in books %}
+            <option value="{{ book.bookid }}">{{ book.title }}</option>
+            {% endfor %}
+          </select>
+
+          <label>Your Notes</label>
+          <textarea
+            name="note"
+            rows="4"
+            placeholder="What did you think?"
+          ></textarea>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%">
+            Mark as Finished
+          </button>
+        </form>
+        <br />
+        <a href="/">← Back to Dashboard</a>
+      </div>
+    </div>
+  </body>
+</html>
